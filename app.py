@@ -3,7 +3,11 @@ List of exercises for training
 """
 import toga
 from toga.style import Pack
-from toga.style.pack import CENTER, COLUMN, ROW, Pack
+from toga.style.pack import CENTER, COLUMN, ROW
+
+import threading
+
+
 
 
 import pandas as pd
@@ -57,9 +61,9 @@ class MyTraining(toga.App):
 
     def elaborate_l_val(self,ind):
         if self.ds['Type'][ind] == 'Count':
-            return "{} x {}".format(self.ds['Repetition'][ind],self.ds['Number'][ind])
+            return "{} x {}\n{}'' rest between rep".format(self.ds['Repetition'][ind],self.ds['Number'][ind],self.ds['Rest between rep'][ind])
         elif self.ds['Type'][ind] == 'Time':
-            return "{} rep {}'' each ".format(self.ds['Repetition'][ind],self.ds['Number'][ind])
+            return "{} rep {}\'' each\n{}'' rest between rep".format(self.ds['Repetition'][ind],self.ds['Number'][ind],self.ds['Rest between rep'][ind])
         else:
             return "UNKOWN"
 
